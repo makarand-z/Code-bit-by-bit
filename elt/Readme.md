@@ -19,3 +19,5 @@ This project sets up an Extract & Load (EL) workflow using Docker and PostgreSQL
 - The process is triggered automatically when the ```elt_script``` container starts and completes the data load once it has finished processing.
 
 - All services (source and destination databases, as well as the EL script) are connected to a Docker network (```elt_network```) for seamless communication.
+
+Inspired from freeCodeCamp.org!
