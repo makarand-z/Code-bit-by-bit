@@ -6,7 +6,7 @@ sources:
     database: destination_db
     schema: public
     tables:
-      - name: files
+      - name: films
         description: "List of films."
       - name: actors
         description: "List of actors."
