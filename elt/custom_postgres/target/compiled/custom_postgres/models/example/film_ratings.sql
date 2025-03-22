@@ -1,3 +1,5 @@
+
+
 WITH films_with_ratings AS (
     SELECT 
         film_id,
@@ -31,3 +33,4 @@ SELECT
     fwa.actors
 FROM films_with_ratings fwf
 LEFT JOIN films_with_actors fwa ON fwf.film_id = fwa.film_id
+

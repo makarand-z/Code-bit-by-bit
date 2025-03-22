@@ -1,14 +1,4 @@
-
-  
-    
-
-  create  table "destination_db"."public"."film_ratings__dbt_tmp"
-  
-  
-    as
-  
-  (
-    
+{% macro generate_film_ratings() %}
 
 WITH films_with_ratings AS (
     SELECT 
@@ -24,7 +14,7 @@ WITH films_with_ratings AS (
             WHEN user_rating >= 3.0 THEN 'Average'
             ELSE 'Poor'
         END as rating_category
-    FROM "destination_db"."public"."films"
+    FROM {{ ref('films') }}
 ),
 
 films_with_actors AS (
@@ -32,9 +22,9 @@ films_with_actors AS (
         f.film_id,
         f.title,
         STRING_AGG(a.actor_name, ',') AS actors
-    FROM "destination_db"."public"."films" f
-    LEFT JOIN "destination_db"."public"."film_actors" fa ON f.film_id = fa.film_id
-    LEFT JOIN "destination_db"."public"."actors" a ON fa.actor_id = a.actor_id
+    FROM {{ ref('films') }} f
+    LEFT JOIN {{ ref('film_actors') }} fa ON f.film_id = fa.film_id
+    LEFT JOIN {{ ref('actors') }} a ON fa.actor_id = a.actor_id
     GROUP BY f.film_id, f.title
 )
 
@@ -44,6 +34,4 @@ SELECT
 FROM films_with_ratings fwf
 LEFT JOIN films_with_actors fwa ON fwf.film_id = fwa.film_id
 
-
-  );
-  
+{% endmacro %}
