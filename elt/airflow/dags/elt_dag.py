@@ -38,7 +38,7 @@ t1 = PythonOperator(
 
 t2 = DockerOperator(
     task_id="dbt_run",
-    image='ghcr.io/dbt-labs/dbt-postgres:1.4.7',
+    image='ghcr.io/dbt-labs/dbt-postgres:1.9.0',
     command=[
         "run",
         "--profiles-dir",
