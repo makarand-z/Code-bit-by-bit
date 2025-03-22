@@ -1,1 +1,0 @@
-SELECT * FROM "destination_db"."public"."film_actors"
